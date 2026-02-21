@@ -2,6 +2,7 @@ package com.JCommerceSystem.J_Commerce.System.config;
 
 import com.JCommerceSystem.J_Commerce.System.entities.Order;
 import com.JCommerceSystem.J_Commerce.System.entities.User;
+import com.JCommerceSystem.J_Commerce.System.entities.enums.OrderStatus;
 import com.JCommerceSystem.J_Commerce.System.repositories.OrderRepository;
 import com.JCommerceSystem.J_Commerce.System.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class TestConfig implements CommandLineRunner {
         User u1 = new User(null, "Jota", "jota@gmail.com", "988888888", "123456");
         User u2 = new User(null, "Bruna Medeiros", "bruna@gmail.com", "977777777", "123456");
 
-        Order o1 = new Order(null, Instant.parse("2024-08-16T19:53:07Z"), u1);
-        Order o2 = new Order(null, Instant.parse("2024-08-16T12:03:57Z"), u2);
-        Order o3 = new Order(null, Instant.parse("2024-08-16T09:23:00Z"), u1);
+        Order o1 = new Order(null, Instant.parse("2024-08-16T19:53:07Z"), OrderStatus.PAID ,u1);
+        Order o2 = new Order(null, Instant.parse("2024-08-16T12:03:57Z"), OrderStatus.WAITING_PAYMENT, u2);
+        Order o3 = new Order(null, Instant.parse("2024-08-16T09:23:00Z"), OrderStatus.WAITING_PAYMENT, u1);
 
         userRepository.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
