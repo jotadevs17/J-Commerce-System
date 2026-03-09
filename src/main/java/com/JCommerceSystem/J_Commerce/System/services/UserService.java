@@ -2,9 +2,12 @@ package com.JCommerceSystem.J_Commerce.System.services;
 
 import com.JCommerceSystem.J_Commerce.System.entities.User;
 import com.JCommerceSystem.J_Commerce.System.repositories.UserRepository;
+import com.JCommerceSystem.J_Commerce.System.services.exceptions.DatabaseException;
 import com.JCommerceSystem.J_Commerce.System.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +32,14 @@ public class UserService {
     }
 
     public void delete(Long id){
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+
     }
 
     public User update(Long id, User obj){
