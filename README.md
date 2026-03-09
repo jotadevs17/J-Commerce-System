@@ -1,1 +1,39 @@
-Web Services com Spring Boot e JPA / HibernateSobre o ProjetoEste projeto desenvolve web services utilizando Spring Boot e JPA / Hibernate. O foco principal é criar um projeto estruturado em Spring Boot Java. Ele implementa um modelo de domínio e organiza a aplicação em camadas lógicas bem definidas: resource, service e repository. Além disso, a aplicação abrange operações completas de CRUD (Create, Retrieve, Update, Delete) e tratamento de exceções.Tecnologias e FerramentasO projeto foi desenvolvido utilizando o seguinte ecossistema:Framework Backend: Spring Boot Linguagem: Java Gerenciador de Dependências: Maven Mapeamento Objeto-Relacional: JPA / Hibernate Bancos de Dados: H2 (para ambiente de teste) e PostgreSQL (para ambientes de desenvolvimento e produção) Servidor Web: Apache Tomcat Testes de API: POSTMAN Plataforma de Deploy: HEROKU ArquiteturaA aplicação adota uma arquitetura baseada em camadas para garantir a separação de responsabilidades:Resource Layer: Controladores REST responsáveis por receber e responder às requisições HTTP.Service Layer: Camada onde residem as regras de negócio da aplicação.Data Access Layer: Repositórios de dados responsáveis pela comunicação com o banco de dados.Entities: Classes que representam o modelo de domínio da aplicação.Modelo de DomínioO sistema gerencia vendas e pedidos, sendo composto pelas seguintes entidades principais:User: Representa o cliente do sistema.Order: Representa um pedido realizado por um usuário.Category: Representa a categoria de um produto.Product: Representa os produtos disponíveis para venda.OrderItem: Representa os itens individuais dentro de um pedido, associando produtos e quantidades.Payment: Representa o pagamento de um pedido, possuindo uma associação de um-para-um com a entidade Order.O status do pedido é controlado através de um enumerador OrderStatus, que pode assumir os valores: WAITING_PAYMENT, PAID, SHIPPED, DELIVERED ou CANCELED.Funcionalidades e Destaques TécnicosConfiguração de Perfis: Separação clara entre os ambientes de teste (com banco em memória H2) e desenvolvimento/produção (PostgreSQL).Povoamento de Banco de Dados: Rotinas automatizadas para popular o banco de dados de teste (Database Seeding) visando facilitar a execução do projeto.Associações Complexas: Mapeamento de relacionamentos muitos-para-muitos (JoinTable) e classes de associação com chaves compostas (OrderItemPK).Tratamento de Exceções Customizado: Implementação de um interceptador global (ResourceExceptionHandler) para capturar e formatar erros comuns, como ResourceNotFoundException e DatabaseException.
+# Web Services com Spring Boot e JPA / Hibernate
+
+## Sobre o Projeto
+Este projeto desenvolve web services utilizando Spring Boot e JPA / Hibernate. O foco principal é criar um projeto estruturado em Spring Boot Java. Ele implementa um modelo de domínio e organiza a aplicação em camadas lógicas bem definidas: resource, service e repository. Além disso, a aplicação abrange operações completas de CRUD (Create, Retrieve, Update, Delete) e tratamento de exceções. 
+
+## Tecnologias e Ferramentas
+O projeto foi desenvolvido utilizando o seguinte ecossistema:
+* **Framework Backend:** Spring Boot
+* **Linguagem:** Java
+* **Gerenciador de Dependências:** Maven
+* **Mapeamento Objeto-Relacional:** JPA / Hibernate
+* **Bancos de Dados:** H2 (para ambiente de teste) e PostgreSQL (para ambientes de desenvolvimento e produção)
+* **Servidor Web:** Apache Tomcat
+* **Testes de API:** POSTMAN
+* **Plataforma de Deploy:** HEROKU
+
+## Arquitetura
+A aplicação adota uma arquitetura baseada em camadas para garantir a separação de responsabilidades:
+* **Resource Layer:** Controladores REST responsáveis por receber e responder às requisições HTTP.
+* **Service Layer:** Camada onde residem as regras de negócio da aplicação.
+* **Data Access Layer:** Repositórios de dados responsáveis pela comunicação com o banco de dados.
+* **Entities:** Classes que representam o modelo de domínio da aplicação.
+
+## Modelo de Domínio
+O sistema gerencia vendas e pedidos, sendo composto pelas seguintes entidades principais:
+* **User:** Representa o cliente do sistema.
+* **Order:** Representa um pedido realizado por um usuário.
+* **Category:** Representa a categoria de um produto.
+* **Product:** Representa os produtos disponíveis para venda.
+* **OrderItem:** Representa os itens individuais dentro de um pedido, associando produtos e quantidades.
+* **Payment:** Representa o pagamento de um pedido, possuindo uma associação de um-para-um com a entidade Order.
+
+O status do pedido é controlado através de um enumerador `OrderStatus`, que pode assumir os valores: `WAITING_PAYMENT`, `PAID`, `SHIPPED`, `DELIVERED` ou `CANCELED`.
+
+## Funcionalidades e Destaques Técnicos
+* **Configuração de Perfis:** Separação clara entre os ambientes de teste (com banco em memória H2) e desenvolvimento/produção (PostgreSQL).
+* **Povoamento de Banco de Dados:** Rotinas automatizadas para popular o banco de dados de teste (Database Seeding) visando facilitar a execução do projeto.
+* **Associações Complexas:** Mapeamento de relacionamentos muitos-para-muitos (JoinTable) e classes de associação com chaves compostas (OrderItemPK).
+* **Tratamento de Exceções Customizado:** Implementação de um interceptador global (`ResourceExceptionHandler`) para capturar e formatar erros comuns, como `ResourceNotFoundException` e `DatabaseException`.
